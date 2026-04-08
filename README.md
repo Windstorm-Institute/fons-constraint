@@ -1,4 +1,6 @@
-# fons constraint
+# The Fons Constraint
+
+**Paper 1** — Information-Theoretic Convergence on Encoding Depth in Self-Replicating Systems
 
 **Website:** https://windstorminstitute.org
 
