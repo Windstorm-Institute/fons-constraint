@@ -20,4 +20,6 @@ The Paper 7 experimental suite (synthetic-corpus training, quantization cliff, t
 
 **https://github.com/sneakyfree/agi-extensions**
 
-The adversarial review identifies four blocking items that constrain how strongly the present results can be read; the manuscript (`paper/paper7_formal_draft.md` §5b) scopes them as Paper 7.1.
+**Formal manuscript:** [`paper/paper7_draft_v1.1.md`](https://github.com/sneakyfree/agi-extensions/blob/main/paper/paper7_draft_v1.1.md)
+
+The adversarial review identifies four blocking items that constrain how strongly the present results can be read; the manuscript §5.2 scopes them as Paper 7.1.
