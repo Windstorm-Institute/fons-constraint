@@ -13,3 +13,11 @@
 This repository contains:
 - `article.html` — Accessible article from the website
 - `paper.pdf` — Full academic paper
+
+## Paper 7 — The Throughput Basin Origin
+
+The Paper 7 experimental suite (synthetic-corpus training, quantization cliff, transformer-vs-state-space architecture comparison, RTX 5090 wall-power thermodynamic survey, and Vision Basin Phase 1) is published, together with its **internal adversarial review**, at:
+
+**https://github.com/sneakyfree/agi-extensions**
+
+The adversarial review identifies four blocking items that constrain how strongly the present results can be read; the manuscript (`paper/paper7_formal_draft.md` §5b) scopes them as Paper 7.1.
