@@ -1,25 +1,42 @@
-# The Fons Constraint
+# Paper 1: The Fons Constraint
 
-**Paper 1** — Information-Theoretic Convergence on Encoding Depth in Self-Replicating Systems
+**Information-Theoretic Convergence on Encoding Depth in Self-Replicating Systems**
 
-**Website:** https://windstorminstitute.org
+Grant Lavell Whitmer III · Windstorm Labs, The Windstorm Institute · Fort Ann, NY, USA
 
-**Published Research Paper (Zenodo):** [https://zenodo.org/records/19274048](https://zenodo.org/records/19274048)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.19274048-blue)](https://doi.org/10.5281/zenodo.19274048)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey)](https://creativecommons.org/licenses/by/4.0/)
 
-**Windstorm Institute Community:** https://zenodo.org/communities/windstorm-institute/
+---
 
-**Experiments & Code:** https://github.com/Windstorm-Labs/fons-constraint
+## Read the Paper
 
-This repository contains:
-- `article.html` — Accessible article from the website
-- `paper.pdf` — Full academic paper
+- **[paper.pdf](paper.pdf)** — full academic paper
+- **[article.html](article.html)** — accessible web version
+- **[Zenodo record](https://doi.org/10.5281/zenodo.19274048)** — archived with DOI
+- **[Website article](https://windstorminstitute.org/articles/fons-constraint.html)** — long-form companion
 
-## Paper 7 — The Throughput Basin Origin
+## Experiment Code
 
-The Paper 7 experimental suite (synthetic-corpus training, quantization cliff, transformer-vs-state-space architecture comparison, RTX 5090 wall-power thermodynamic survey, and Vision Basin Phase 1) is published, together with its **internal adversarial review**, at:
+Reproducible experiments and raw data for this paper:
+**[Windstorm-Labs/fons-constraint](https://github.com/Windstorm-Labs/fons-constraint)**
 
-**https://github.com/sneakyfree/agi-extensions**
+---
 
-**Formal manuscript (v1.2 PDF):** [`Paper7-Throughput-Basin-Origin-v1.2.pdf`](https://github.com/sneakyfree/agi-extensions/blob/main/paper/Paper7-Throughput-Basin-Origin-v1.2.pdf)
+## The Windstorm Series
 
-The adversarial review identifies four blocking items that constrain how strongly the present results can be read; the manuscript §5.2 scopes them as Paper 7.1.
+| # | Paper | DOI |
+|---|-------|-----|
+| 1 | [The Fons Constraint](https://github.com/Windstorm-Institute/fons-constraint) | [10.5281/zenodo.19274048](https://doi.org/10.5281/zenodo.19274048) |
+| 2 | [The Receiver-Limited Floor](https://github.com/Windstorm-Institute/receiver-limited-floor) | [10.5281/zenodo.19322973](https://doi.org/10.5281/zenodo.19322973) |
+| 3 | [The Throughput Basin](https://github.com/Windstorm-Institute/throughput-basin) | [10.5281/zenodo.19323194](https://doi.org/10.5281/zenodo.19323194) |
+| 4 | [The Serial Decoding Basin τ](https://github.com/Windstorm-Institute/serial-decoding-basin) | [10.5281/zenodo.19323423](https://doi.org/10.5281/zenodo.19323423) |
+| 5 | [The Dissipative Decoder](https://github.com/Windstorm-Institute/dissipative-decoder) | [10.5281/zenodo.19433048](https://doi.org/10.5281/zenodo.19433048) |
+| 6 | [The Inherited Constraint](https://github.com/Windstorm-Institute/inherited-constraint) | [10.5281/zenodo.19432911](https://doi.org/10.5281/zenodo.19432911) |
+| 7 | [The Throughput Basin Origin](https://github.com/sneakyfree/agi-extensions) | [PDF](https://github.com/sneakyfree/agi-extensions/blob/main/paper/Paper7-Throughput-Basin-Origin-v1.2.pdf) (preprint) |
+
+**Website:** [windstorminstitute.org](https://windstorminstitute.org)
+
+---
+
+*License: CC BY 4.0*
