@@ -12,7 +12,7 @@ ORCID: 0009-0007-3224-755X
 
 ## Abstract
 
-The genetic code universally employs 64 codons, yet the theoretical basis for this encoding depth remains incompletely formalized. Two independent mathematical derivations show that optimal encoding alphabet size for self-replicating systems converges on 2^6 = 64 units. Shannon's channel capacity yields optimal codon length of three bases in a four-letter alphabet (4^3 = 64). Eigen's quasispecies error threshold independently constrains viable encoding depth to the same basin. Sensitivity analysis across nine orders of magnitude of error rate confirms 64 is a stable attractor. Two conflated constraints are distinguished: the Unit Constraint (optimal alphabet size) and the Sequence Constraint (maximum message length before mutation destroys fidelity). An empirical test analyzing 16 AI tokenizer vocabularies falsified the prediction that AI vocabularies cluster near 64. However, effective information per sequential processing event converges at approximately 4--5 bits across DNA, human cognition, and AI despite 1000-fold vocabulary differences, suggesting a deeper throughput constraint at the receiver level.
+The genetic code universally employs 64 codons, yet the theoretical basis for this encoding depth remains incompletely formalized. A Shannon channel-capacity derivation shows that the optimal encoding alphabet size for self-replicating systems is 2^6 = 64 units: it yields an optimal codon length of three bases in a four-letter alphabet (4^3 = 64). Eigen's quasispecies error threshold, applied independently, bounds the maximum viable sequence length and is consistent with a 64-codon alphabet, though it does not by itself derive the alphabet size. Sensitivity analysis across eight orders of magnitude of error rate confirms 64 is a stable attractor. Two conflated constraints are distinguished: the Unit Constraint (optimal alphabet size) and the Sequence Constraint (maximum message length before mutation destroys fidelity). An empirical test analyzing 16 AI tokenizer vocabularies falsified the prediction that AI vocabularies cluster near 64. However, a softer regularity is *conjectured* — and tested in the companion papers, not established here: the effective information extracted per sequential processing event appears to fall in a common low-single-digit-bit range across substrates (the ribosome at ~4.4 bits, a frontier language model's per-token cross-entropy at ~4--5 bits near perplexity ~25, and human working memory at a few bits per chunk), despite 1000-fold vocabulary differences. This motivates, rather than demonstrates, a receiver-level throughput constraint.
 
 **Keywords:** channel capacity; error threshold; self-replication; encoding depth; genetic code; serial decoding
 
@@ -22,7 +22,7 @@ The genetic code universally employs 64 codons, yet the theoretical basis for th
 
 The genetic code uses 64 codons (4^3 triplets from a 4-nucleotide alphabet) to encode 20 amino acids and 3 stop signals, with 41 redundant mappings providing error tolerance. Freeland and Hurst [1] demonstrated this code is near-optimal for minimizing amino-acid substitution costs under mutation. But why 64? Why not 16 (4^2) or 256 (4^4)?
 
-This paper derives the answer from first principles using two independent mathematical frameworks, showing that 64 sits at the bottom of an information-theoretic basin of attraction that is robust across nine or more orders of magnitude of error rate.
+This paper derives the answer from first principles using two independent mathematical frameworks, showing that 64 sits at the bottom of an information-theoretic basin of attraction that is robust across eight orders of magnitude of error rate.
 
 Two constraints that are often conflated must be distinguished:
 
@@ -47,7 +47,7 @@ C_channel = log_2(A) - H(epsilon)     (2)
 
 where H(epsilon) = -epsilon * log_2(epsilon) - (1 - epsilon) * log_2(1 - epsilon) is the binary entropy function. For DNA (A = 4): C_channel ~ 2 bits/digit. For a codon of m digits, reliable transmission requires:
 
-m >= log_2(C) / (log_2(A) * C_channel)     (3)
+m >= log_2(C) / C_channel     (3)
 
 For DNA: m = ceil(log_4(23)) = ceil(2.26) = 3. Thus N = 4^3 = 64.
 
@@ -65,7 +65,7 @@ Optimal codon length was computed across error rates from 10^-10 to 10^-2 for bo
 
 ### 2.4. AI Tokenizer Vocabulary Analysis
 
-Sixteen major AI tokenizer vocabularies were analyzed (GPT-4, GPT-2, LLaMA-2, LLaMA-3, BERT, T5, Mistral, Phi-3, Yi-34B, Falcon-180B, Qwen-2, DeepSeek-V2, Claude, Gemini, Command-R) spanning vocabulary sizes from 30,522 to 256,000. For each, vocabulary size V, log_2(V), and effective information per token were calculated using Shannon's English entropy estimate [5] and average characters per token. Analysis code and results are available at the companion repository [6].
+Sixteen major AI tokenizer vocabularies were analyzed (GPT-4, GPT-3.5, GPT-2, LLaMA-2, LLaMA-3, BERT, T5, Mistral, Phi-3, Yi-34B, Falcon-180B, Qwen-2, DeepSeek-V2, Claude, Gemini, Command-R) spanning vocabulary sizes from 30,522 to 256,000. For each, vocabulary size V, log_2(V), and effective information per token were calculated using Shannon's English entropy estimate [5] and average characters per token. Analysis code and results are available at the companion repository [6].
 
 ## 3. Results
 
@@ -85,15 +85,15 @@ The Shannon derivation yields optimal codon length m = 3: m = 2 (N = 16) provide
 | 23 | 10^-3 | 4.58 | 3 | 64 | ~10 | ~95 |
 | 23 | 10^-2 | 4.92 | 3 | 64 | ~1 | ~10 |
 
-The optimum at N = 64 is stable across nine orders of magnitude of error rate.
+The optimum at N = 64 is stable across eight orders of magnitude of error rate.
 
 **Table 2.** Binary alphabet case (A = 2, C = 23).
 
 | epsilon | Optimal bits | k | N = 2^k |
 |---------|-------------|---|---------|
-| 10^-4 | 6.01 | 7 | 128 |
-| 10^-3 | 6.07 | 7 | 128 |
-| 10^-2 | 6.53 | 7 | 128 |
+| 10^-4 | 4.53 | 5 | 32 |
+| 10^-3 | 4.58 | 5 | 32 |
+| 10^-2 | 4.92 | 5 | 32 |
 
 ### 3.3. Unit Constraint vs. Sequence Constraint
 
@@ -102,7 +102,7 @@ The optimum at N = 64 is stable across nine orders of magnitude of error rate.
 | | Unit Constraint | Sequence Constraint |
 |---|---|---|
 | Constrains | Alphabet size | Total message length |
-| Derived from | Shannon + Eigen | Eigen [2] |
+| Derived from | Shannon | Eigen [2] |
 | DNA example | 64 codons | ~531,000 bp |
 | Result | N ~ 2^6 | L_max ~ ln(sigma)/epsilon |
 
@@ -116,7 +116,7 @@ The prediction that AI vocabularies cluster near 2^6 was not supported. Vocabula
 |-----------|------|------------|-------------------|
 | DNA | Codon | 64 | ~4.4 bits |
 | Human cognition | Chunk | 7 +/- 2 | ~4-5 bits |
-| AI (frontier) | Token | ~100K | ~4.6 bits |
+| AI (frontier) | Token | ~100K | ~4.6 bits (LM cross-entropy, ppl ~25) |
 
 ## 4. Discussion
 
@@ -130,7 +130,7 @@ Expanding the alphabet to 256 codons (m = 4) would incur substantial costs in re
 
 ### 4.3. Cross-Substrate Throughput
 
-The broader constraint appears to operate at the effective throughput level (~4--5 bits/step), with vocabulary size as a dependent variable. This is consistent with Miller's [7] finding on working memory and Cowan's [8] revised estimate. The throughput convergence is examined formally in companion papers [9--13].
+We conjecture that the broader constraint operates at the effective throughput level (a few bits/step), with vocabulary size as a dependent variable. This is consistent with Miller's [7] finding on working memory and Cowan's [8] revised estimate. The throughput convergence is examined formally in companion papers [9--13].
 
 ### 4.4. Limitations
 
