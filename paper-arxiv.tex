@@ -1,27 +1,15 @@
-% Paper 1 of 7 in The Windstorm Series
-\documentclass[12pt,a4paper]{article}
-
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{graphicx}
-\usepackage{hyperref}
-\usepackage{natbib}
-\usepackage{booktabs}
-
+\documentclass[11pt]{article}
+\usepackage{wsi-style}
+\wsirunhead{The Fons Constraint}
 \title{The Fons Constraint: Information-Theoretic Convergence on Encoding Depth in Self-Replicating Systems}
-
-\author{Grant Lavell Whitmer III\\
-The Windstorm Institute, Fort Ann, NY 12827, USA\\
-\texttt{grantwhitmer3@gmail.com}}
-
+\author{Grant Whitmer}
 \date{March 2026}
-
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-The genetic code universally employs 64 codons, yet the theoretical basis for this encoding depth remains incompletely formalized. A Shannon channel-capacity derivation shows that the optimal encoding alphabet size for self-replicating systems is $2^6 = 64$ units: it yields an optimal codon length of three bases in a four-letter alphabet ($4^3 = 64$). Eigen's quasispecies error threshold, applied independently, bounds the maximum viable sequence length and is consistent with a 64-codon alphabet, though it does not by itself derive the alphabet size. Sensitivity analysis across eight orders of magnitude of error rate confirms 64 is a stable attractor. Two conflated constraints are distinguished: the Unit Constraint (optimal alphabet size) and the Sequence Constraint (maximum message length before mutation destroys fidelity). An empirical test analyzing 16 AI tokenizer vocabularies falsified the prediction that AI vocabularies cluster near 64. However, a softer regularity is \emph{conjectured}---and tested in the companion papers, not established here: the effective information extracted per sequential processing event appears to fall in a common low-single-digit-bit range across substrates (the ribosome at $\sim$4.4 bits, a frontier language model's per-token cross-entropy at $\sim$4--5 bits near perplexity $\sim$25, and human working memory at a few bits per chunk), despite 1000-fold vocabulary differences. This motivates, rather than demonstrates, a receiver-level throughput constraint. This is the first paper in a nine-paper series on serial decoding constraints.
+The genetic code universally employs 64 codons, yet the theoretical basis for this encoding depth remains incompletely formalized. A Shannon channel-capacity argument shows that the minimum sufficient encoding depth for a four-nucleotide replicator specifying $\sim$23 functional outputs is a three-base codon, giving $4^3 = 64$ units---the shortest codon length that supplies enough distinct combinations while leaving spare capacity (41 redundant codons) for error tolerance. Eigen's quasispecies error threshold, applied independently, bounds the maximum viable sequence length and is consistent with a 64-codon alphabet, though it does not by itself derive the alphabet size. Sensitivity analysis across eight orders of magnitude of error rate confirms this depth-3 solution is stable. Two conflated constraints are distinguished: the Unit Constraint (optimal alphabet size) and the Sequence Constraint (maximum message length before mutation destroys fidelity). An empirical test analyzing 16 AI tokenizer vocabularies falsified the prediction that AI vocabularies cluster near 64. However, a softer regularity is \emph{conjectured}---and tested in the companion papers, not established here: the effective information extracted per sequential processing event appears to fall in a common low-single-digit-bit range across substrates (the ribosome at $\sim$4.4 bits, a frontier language model's per-token cross-entropy at $\sim$4--5 bits near perplexity $\sim$25, and human working memory at a few bits per chunk), despite 1000-fold vocabulary differences. This motivates, rather than demonstrates, a receiver-level throughput constraint. This is the first paper in a nine-paper series on serial decoding constraints.
 \end{abstract}
 
 \noindent\textbf{Keywords:} channel capacity; error threshold; rate-distortion; self-replication; encoding depth; genetic code; throughput constraint; serial decoding
@@ -30,7 +18,7 @@ The genetic code universally employs 64 codons, yet the theoretical basis for th
 
 The genetic code uses 64 codons ($4^3$ triplets from a 4-nucleotide alphabet) to encode 20 amino acids and 3 stop signals, with 41 redundant mappings providing error tolerance. Freeland and Hurst~\cite{freeland1998} demonstrated this code is near-optimal for minimizing amino-acid substitution costs under mutation. But why 64? Why not 16 ($4^2$) or 256 ($4^4$)?
 
-This paper derives the answer from first principles using two independent mathematical frameworks, showing that 64 sits at the bottom of an information-theoretic basin of attraction that is robust across eight orders of magnitude of error rate.
+This paper derives the 64-codon encoding depth from Shannon's channel capacity as the minimum sufficient solution for a four-letter alphabet specifying $\sim$23 outputs, and shows that Eigen's error threshold is independently consistent with it---a depth that remains fixed across eight orders of magnitude of error rate.
 
 Two constraints that are often conflated must be distinguished:
 
@@ -41,13 +29,13 @@ Two constraints that are often conflated must be distinguished:
 
 Craig Venter's JCVI-syn3.0 minimal genome~\cite{hutchison2016} uses the standard 64-codon alphabet (Unit Constraint) but requires approximately 531,000 base pairs across 473 genes (Sequence Constraint). The 64 codons are the vocabulary; the genome is the text. These are separate optimization problems.
 
-The objectives of this study are: (a)~to derive the 64-codon optimum from Shannon's channel capacity~\cite{shannon1948} and Eigen's error threshold~\cite{eigen1971} independently; (b)~to distinguish the Unit Constraint from the Sequence Constraint; and (c)~to test whether the Unit Constraint generalizes beyond biology by analyzing AI tokenizer vocabularies.
+The objectives of this study are: (a)~to derive the 64-codon encoding depth from Shannon's channel capacity~\cite{shannon1948} and Eigen's error threshold~\cite{eigen1971} independently; (b)~to distinguish the Unit Constraint from the Sequence Constraint; and (c)~to test whether the Unit Constraint generalizes beyond biology by analyzing AI tokenizer vocabularies.
 
 \section{Materials and Methods}
 
 \subsection{Shannon's Channel Capacity}
 
-A functional encoding system specifying at least $C$ distinct outputs requires minimum information per transmitted symbol:
+The first derivation path applies Shannon's noisy-channel coding theorem~\cite{shannon1948}. A functional encoding system that must specify at least $C$ distinct outputs requires a minimum information per transmitted symbol of:
 \begin{equation}
     I_{\mathrm{req}} = \log_2(C)
 \end{equation}
@@ -56,12 +44,12 @@ For the genetic code ($C \sim 23$): $I_{\mathrm{req}} \sim 4.52$ bits. For an $A
 \begin{equation}
     C_{\mathrm{channel}} = \log_2(A) - H(\varepsilon)
 \end{equation}
-where $H(\varepsilon) = -\varepsilon \log_2(\varepsilon) - (1 - \varepsilon) \log_2(1 - \varepsilon)$ is the binary entropy function. For DNA ($A = 4$): $C_{\mathrm{channel}} \sim 2$ bits/digit. For a codon of $m$ digits, reliable transmission requires:
+where $H(\varepsilon) = -\varepsilon \log_2(\varepsilon) - (1 - \varepsilon) \log_2(1 - \varepsilon)$ is the binary entropy function. For DNA ($A = 4$) with near-perfect enzymatic proofreading, $C_{\mathrm{channel}} \sim 2 - H(\varepsilon) \sim 2$ bits/digit. For a codon of $m$ digits, reliable transmission requires:
 \begin{equation}
     m \geq \frac{\log_2(C)}{C_{\mathrm{channel}}}
 \end{equation}
 
-For DNA: $m = \lceil \log_4(23) \rceil = \lceil 2.26 \rceil = 3$. Thus $N = 4^3 = 64$.
+When $\varepsilon$ is small this reduces to $m \sim \lceil \log_A(C) \rceil$. For DNA, $m = \lceil \log_4(23) \rceil = \lceil 2.26 \rceil = 3$, so $N = 4^3 = 64$: a three-base codon is the shortest word length whose $4^3$ combinations cover the $\sim$23 required outputs. At the small-$\varepsilon$ limit the noise term does little work; the substantive content is that two bases are too few to index 23 outputs and four are more than needed---the channel-capacity machinery becomes load-bearing only as $\varepsilon$ approaches the regime where the ceiling would advance.
 
 \subsection{Eigen's Error Threshold}
 
@@ -70,7 +58,7 @@ Eigen~\cite{eigen1971} derived that a self-replicating sequence with per-digit f
     L_{\max} \sim \frac{\ln(\sigma)}{1 - q} \sim \frac{\ln(\sigma)}{\varepsilon}
 \end{equation}
 
-Shannon's derivation yields the optimal alphabet size per transmission unit; Eigen's derivation yields the maximum viable message length in that alphabet. Two independent paths---information theory and population genetics---constrain the same system from different directions, with the 64-codon alphabet optimal by Shannon's path and viable by Eigen's.
+If $L > L_{\max}$, the master sequence is lost to mutational meltdown as errors accumulate faster than selection can purge them. Shannon's derivation fixes the minimum sufficient alphabet depth per transmission unit; Eigen's yields the maximum viable message length in that alphabet. Two independent paths---information theory and population genetics---constrain the same system from complementary directions, with the 64-codon alphabet minimally sufficient by Shannon's path and viable by Eigen's.
 
 \subsection{Sensitivity Analysis}
 
@@ -82,30 +70,40 @@ Sixteen major AI tokenizer vocabularies were analyzed (GPT-4, GPT-3.5, GPT-2, LL
 
 \section{Results}
 
-\subsection{Optimal Codon Length}
+\subsection{Minimum Sufficient Codon Length}
 
-The Shannon derivation yields optimal codon length $m = 3$: $m = 2$ ($N = 16$) provides insufficient states; $m = 3$ ($N = 64$) is the minimum integer satisfying Equation~(3) with 41 spare mappings for error tolerance; $m = 4$ ($N = 256$) incurs excessive redundancy.
+The Shannon derivation yields a minimum sufficient codon length of $m = 3$ for a four-letter alphabet specifying $\sim$23 functional outputs. The three adjacent integer choices behave as follows:
+\begin{itemize}
+    \item $m = 2$ ($N = 16$): insufficient---sixteen codewords cannot cover all 23 amino acids and stop signals.
+    \item $m = 3$ ($N = 64$): the minimum integer satisfying Eq.~(3), with 41 spare mappings supplying error tolerance through synonymous codons.
+    \item $m = 4$ ($N = 256$): excessive redundancy---higher replication cost and more error accumulation per codon without proportionate information gain.
+\end{itemize}
+
+\subsection{Sequence-Length Bound Consistent with $N = 64$}
+
+Eigen's error threshold independently constrains the maximum viable sequence \emph{length}, not the alphabet size. Hutchison et al.~\cite{hutchison2016} constructed JCVI-syn3.0 with 473 genes and $\sim$531{,}000 base pairs---the experimentally determined minimum viable genome for autonomous cellular life---confirming that the standard 64-codon alphabet is consistent with a minimal self-replicating system. This corroborates the viability of the 64-codon alphabet but does not by itself derive the codon count.
 
 \subsection{Sensitivity Analysis}
 
 \begin{table}[ht]
 \centering
-\caption{Sensitivity analysis of optimal codon length ($A = 4$, $C = 23$).}
+\caption{Sensitivity of the minimum sufficient codon length ($A = 4$, $C = 23$).}
 \label{tab:sensitivity}
-\begin{tabular}{cccccc}
+\begin{tabular}{ccccccc}
 \toprule
-$C$ & $\varepsilon$ & Optimal bits & $m$ & $N = 4^m$ & $L_{\max}$ ($\sigma = 1.01$) \\
+$C$ & $\varepsilon$ & Optimal bits & $m$ & $N = 4^m$ & $L_{\max}$ ($\sigma{=}1.01$) & $L_{\max}$ ($\sigma{=}1.1$) \\
 \midrule
-23 & $10^{-10}$ & 4.52 & 3 & 64 & $\sim$99.5M \\
-23 & $10^{-6}$  & 4.52 & 3 & 64 & $\sim$9,950 \\
-23 & $10^{-4}$  & 4.53 & 3 & 64 & $\sim$100 \\
-23 & $10^{-3}$  & 4.58 & 3 & 64 & $\sim$10 \\
-23 & $10^{-2}$  & 4.92 & 3 & 64 & $\sim$1 \\
+23 & $10^{-10}$ & 4.52 & 3 & 64 & $\sim$99.5M & $\sim$953M \\
+23 & $10^{-9}$  & 4.52 & 3 & 64 & $\sim$9.95M & $\sim$95.3M \\
+23 & $10^{-6}$  & 4.52 & 3 & 64 & $\sim$9,950 & $\sim$95,310 \\
+23 & $10^{-4}$  & 4.53 & 3 & 64 & $\sim$100   & $\sim$953 \\
+23 & $10^{-3}$  & 4.58 & 3 & 64 & $\sim$10    & $\sim$95 \\
+23 & $10^{-2}$  & 4.92 & 3 & 64 & $\sim$1     & $\sim$10 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The optimum at $N = 64$ is stable across eight orders of magnitude of error rate.
+The depth-3 solution ($N = 64$) is stable across eight orders of magnitude of error rate. With an explicit distortion tolerance $D = 0.05$ (matching synonymous-codon redundancy) the solution is unchanged, confirming that depth~3 occupies a broad stable range of the parameter space rather than a fragile knife-edge.
 
 \begin{table}[ht]
 \centering
@@ -140,19 +138,21 @@ Result & $N \sim 2^6$ & $L_{\max} \sim \ln(\sigma)/\varepsilon$ \\
 \end{tabular}
 \end{table}
 
+Conflating these two constraints produces the common but imprecise claim that ``64 is the optimal encoding size.'' The present decomposition makes the statement exact: 64 is the minimum sufficient \emph{alphabet} depth, while the total encoding \emph{length} is orders of magnitude larger and set by the separate Sequence Constraint.
+
 \subsection{AI Tokenizer Vocabularies}
 
-The prediction that AI vocabularies cluster near $2^6$ was not supported. Vocabulary sizes range from 30,522 to 256,000 (average $\log_2(V) = 16.2$ bits). However, effective information per processing event converges:
+The prediction that AI tokenizer vocabularies would cluster near the $2^6$ neighborhood was not supported. Vocabulary sizes span an $\sim$1{,}100-fold range from 30{,}522 (BERT) to 256{,}000 (Gemini), averaging $\log_2(V) = 16.2$ bits; none fall in the $2^5$--$2^7$ basin. The Unit Constraint is therefore specific to nucleotide encoding under DNA's parameters and does not transfer to learned vocabularies. A softer regularity appears, however, when attention shifts from vocabulary size to per-step throughput:
 
 \begin{table}[ht]
 \centering
-\caption{Cross-substrate convergence.}
+\caption{Cross-substrate convergence (conjectural). The three ``effective info/step'' figures are different operationalizations---amino-acid entropy (DNA), working-memory capacity (cognition), and per-token cross-entropy at perplexity $\sim$25 (AI)---advanced as a conjecture tested in the companion papers, not a measured equivalence.}
 \label{tab:crosssubstrate}
 \begin{tabular}{llcc}
 \toprule
 Substrate & Unit & Vocabulary & Effective info/step \\
 \midrule
-DNA & Codon & 64 & $\sim$4.4 bits \\
+DNA & Codon & 64 & $\sim$4.4 bits ($\log_2 21$) \\
 Human cognition & Chunk & $7 \pm 2$ & $\sim$4--5 bits \\
 AI (frontier) & Token & $\sim$100K & $\sim$4.6 bits (LM cross-entropy, ppl $\sim$25) \\
 \bottomrule
@@ -161,25 +161,43 @@ AI (frontier) & Token & $\sim$100K & $\sim$4.6 bits (LM cross-entropy, ppl $\sim
 
 \section{Discussion}
 
-\subsection{Robustness of the Optimum}
+\subsection{Robustness of the Encoding Depth}
 
-The ceiling function $\lceil \log_A(C) \rceil$ is insensitive to perturbations in channel capacity when $I_{\mathrm{req}}$ falls well within the capacity of one additional digit. The convergence of Shannon and Eigen frameworks on the same encoding depth strengthens the result beyond either path alone.
+The derivation is narrow but robust. Nucleotide-based encoding depth settles at $N = 64$ because three bases minimize the rate--distortion tradeoff under DNA's noise regime while still covering the required outputs. Across error rates spanning eight orders of magnitude---from the near-perfect fidelity of enzymatic proofreading ($\varepsilon \sim 10^{-10}$) to catastrophically noisy conditions ($\varepsilon \sim 10^{-2}$)---the minimum sufficient codon length remains $m = 3$. This stability is a property of the underlying mathematics: the ceiling function $\lceil \log_A(C) \rceil$ is insensitive to perturbations in channel capacity when $I_{\mathrm{req}}$ falls well within the capacity of one additional digit, so the depth-3 solution holds until the per-digit error rate exceeds $\sim$11\%---far beyond any biological regime. Shannon and Eigen constrain different axes of the same system---alphabet depth and message length, respectively---so their agreement is one of consistency across complementary frameworks, not a second derivation of the depth.
 
 \subsection{The Unit--Sequence Distinction}
 
-Expanding the alphabet to 256 codons ($m = 4$) would incur substantial costs in replication fidelity without proportionate gains, since only 23 functional outputs are required. The Sequence Constraint sets an independent upper bound governed by replication fidelity and selective advantage, not alphabet size.
+The distinction has practical consequences for synthetic biology. A designer expanding the natural code should recognize that alphabet depth and genome length are optimized separately: expanding to 256 codons ($m = 4$) would incur substantial costs in replication fidelity and energy without proportionate encoding gain, since only $\sim$23 functional outputs are required. Conversely, the Sequence Constraint sets an independent upper bound on genome complexity governed by replication fidelity and selective advantage, not by alphabet size.
 
 \subsection{Cross-Substrate Throughput}
 
-We conjecture that the broader constraint operates at the effective throughput level (a few bits/step), with vocabulary size as a dependent variable. This is consistent with Miller's~\cite{miller1956} finding on working memory and Cowan's~\cite{cowan2001} revised estimate. The throughput convergence is examined formally in companion papers~\cite{whitmer2026rlf,whitmer2026tb,whitmer2026sdb,whitmer2026dd,whitmer2026ic}.
+The Unit Constraint ($N \sim 2^6$) holds as a theorem for nucleotide encoding under DNA's parameters; it does not generalize directly to AI vocabularies, as the empirical test demonstrates. We advance instead a conjecture---tested, not established, here---that the substrate-independent constraint operates at the level of effective \emph{throughput} (a few bits per processing step), with vocabulary size a dependent variable determined by the receiver's architecture and error-correction strategy. This is consistent with Miller's~\cite{miller1956} $7 \pm 2$ working-memory estimate ($\sim$3--5 bits per chunk) and Cowan's~\cite{cowan2001} revised figure of $\sim$4 items. If it survives scrutiny, the implication is that the bottleneck in serial information processing lies not in the encoding vocabulary but in the receiver's capacity to discriminate symbols under noise---a receiver-limited rather than sender-limited regime. We stress that the three figures in Table~\ref{tab:crosssubstrate} are different operationalizations---amino-acid entropy, working-memory capacity, and per-token cross-entropy---so their apparent agreement motivates rather than demonstrates the constraint. It is examined formally across the companion papers~\cite{whitmer2026rlf,whitmer2026tb,whitmer2026sdb,whitmer2026dd,whitmer2026ic}.
+
+\subsection{Future Work}
+
+Four directions follow directly from the present analysis:
+\begin{enumerate}
+    \item Complete the Landauer thermodynamic derivation---an independent, energy-based path to the same encoding-depth constraint~\cite{landauer1961}.
+    \item Validate the throughput conjecture across artificial-life simulations, where alphabet size and error rate can be varied independently of biological contingency.
+    \item Test whether tokenizers trained under injected noise converge on smaller vocabularies, as the receiver-limited picture would predict.
+    \item Measure effective bits per codon across the known variant genetic codes (mitochondrial, ciliate, mycoplasma) to test the depth-3 result against natural codon reassignments.
+\end{enumerate}
 
 \subsection{Limitations}
 
-The derivation is proven for DNA and conjectured for other substrates. Some AI tokenizer parameters are estimated. No computational simulation has validated the sensitivity analysis. A Landauer thermodynamic derivation~\cite{landauer1961} remains incomplete. The equiprobable symbol assumption is violated by real codon usage distributions.
+Several limitations bound the present result:
+\begin{enumerate}
+    \item The derivation is proven for DNA-based systems and conjectured for other substrates; extension to expanded synthetic alphabets requires empirical validation.
+    \item The AI tokenizer analysis uses estimated parameters for two models (Claude, Gemini) where official vocabulary specifications were unavailable.
+    \item No independent computational simulation has yet validated the sensitivity results of Tables~\ref{tab:sensitivity}--\ref{tab:binary}.
+    \item A proposed third derivation path via Landauer's thermodynamic cost~\cite{landauer1961} remains incomplete.
+    \item The throughput convergence is preliminary and receives its formal derivation only in the companion papers~\cite{whitmer2026rlf,whitmer2026tb}.
+    \item The analysis assumes symmetric error channels and equiprobable symbols; real codon-usage distributions violate both, and robustness under non-uniform usage warrants further work.
+\end{enumerate}
 
 \section{Conclusions}
 
-The genetic code's 64 codons represent the information-theoretic optimum for a four-letter alphabet encoding approximately 23 functional outputs---derived from Shannon's channel capacity, shown consistent with Eigen's error threshold, and robust across eight orders of magnitude of error rate. The empirical extension to AI falsified the substrate-independence prediction but motivated a conjecture---tested across the companion papers---of a deeper convergence in effective throughput (a few bits per serial processing event) across DNA, cognition, and AI.
+The genetic code's 64 codons represent the minimum sufficient encoding depth for a four-letter alphabet specifying approximately 23 functional outputs, with 41 spare codons providing error tolerance---derived from Shannon's channel capacity, shown consistent with Eigen's error threshold, and stable across eight orders of magnitude of error rate. The empirical extension to AI falsified the substrate-independence prediction but motivated a conjecture---tested across the companion papers---of a deeper convergence in effective throughput (a few bits per serial processing event) across DNA, cognition, and AI.
 
 \vspace{1em}
 \noindent\textbf{Author Contributions:} Conceptualization, G.L.W.; methodology, G.L.W.; formal analysis, G.L.W.; investigation, G.L.W.; writing---original draft, G.L.W.; writing---review and editing, G.L.W.
@@ -191,6 +209,13 @@ The genetic code's 64 codons represent the information-theoretic optimum for a f
 \noindent\textbf{Acknowledgments:} Mathematical derivations, tokenizer experiment, and initial manuscript drafting were performed with the assistance of Claude (Anthropic), an AI research tool. The throughput constraint observation emerged from collaborative analysis on 28 March 2026.
 
 \noindent\textbf{Conflicts of Interest:} The author declares no conflict of interest.
+
+\section*{Appendix A: Tokenizer Experiment Protocol}
+
+The tokenizer analysis was implemented in Python using publicly available tokenizer libraries. For each of the 16 tokenizers the following were computed: vocabulary size $V$; raw bits per token $\log_2 V$; average characters per token, measured on a standardized English corpus; effective information per token, estimated as Shannon's English entropy ($4.7$ bits/character~\cite{shannon1951}) times average characters per token; and basin membership, i.e.\ whether $\log_2 V$ falls within the $2^5$--$2^7$ range. Across the 16 tokenizers, $\log_2 V$ averaged $16.2$ bits and the effective-information metric averaged $\sim$16.5 bits; \emph{none} fell in the $2^5$--$2^7$ basin, which is the result reported in Section~4.4 as falsifying the vocabulary-clustering prediction. We emphasize that this vocabulary-scale metric is distinct from the per-token cross-entropy ($\sim$4.6 bits at perplexity $\sim$25) that appears in the cross-substrate throughput conjecture of Table~4: the two quantities answer different questions, and only the latter---the model's per-step predictive information, not its vocabulary size---is advanced as converging across substrates. Complete analysis code and raw results in JSON format are available at the companion repository~\cite{whitmer2026fons_code}.
+
+\subsection*{Data, Code \& Resources}
+\noindent Manuscript source and archived record: \url{https://github.com/Windstorm-Institute/fons-constraint} (Zenodo: \href{https://doi.org/10.5281/zenodo.19274047}{10.5281/zenodo.19274047}). Experiments, datasets, and analysis code: \url{https://github.com/Windstorm-Labs/fons-constraint}. Windstorm Institute: \url{https://windstorminstitute.org}. Windstorm Labs: \url{https://windstormlabs.com}.
 
 \begin{thebibliography}{15}
 
@@ -246,31 +271,31 @@ The magical number 4 in short-term memory.
 Whitmer III, G.L.
 The Receiver-Limited Floor.
 \textit{Zenodo} \textbf{2026}.
-\href{https://doi.org/10.5281/zenodo.19322973}{DOI: 10.5281/zenodo.19322973}
+\href{https://doi.org/10.5281/zenodo.19322972}{DOI: 10.5281/zenodo.19322972}
 
 \bibitem{whitmer2026tb}
 Whitmer III, G.L.
 The Throughput Basin.
 \textit{Zenodo} \textbf{2026}.
-\href{https://doi.org/10.5281/zenodo.19323194}{DOI: 10.5281/zenodo.19323194}
+\href{https://doi.org/10.5281/zenodo.19323193}{DOI: 10.5281/zenodo.19323193}
 
 \bibitem{whitmer2026sdb}
 Whitmer III, G.L.
 The Serial Decoding Basin.
 \textit{Zenodo} \textbf{2026}.
-\href{https://doi.org/10.5281/zenodo.19323423}{DOI: 10.5281/zenodo.19323423}
+\href{https://doi.org/10.5281/zenodo.19323422}{DOI: 10.5281/zenodo.19323422}
 
 \bibitem{whitmer2026dd}
 Whitmer III, G.L.
 The Dissipative Decoder.
 \textit{Zenodo} \textbf{2026}.
-\href{https://doi.org/10.5281/zenodo.19433048}{DOI: 10.5281/zenodo.19433048}
+\href{https://doi.org/10.5281/zenodo.19432785}{DOI: 10.5281/zenodo.19432785}
 
 \bibitem{whitmer2026ic}
 Whitmer III, G.L.
 The Inherited Constraint.
 \textit{Zenodo} \textbf{2026}.
-\href{https://doi.org/10.5281/zenodo.19432911}{DOI: 10.5281/zenodo.19432911}
+\href{https://doi.org/10.5281/zenodo.19432910}{DOI: 10.5281/zenodo.19432910}
 
 \bibitem{landauer1961}
 Landauer, R.
@@ -286,9 +311,9 @@ University of Illinois Press: Urbana, IL, USA, 1966.
 \end{thebibliography}
 
 \vspace{2em}
-\noindent\textit{This paper is Paper 1 of The Windstorm Series (Papers 1--7) on universal constraints in serial information processing.}
+\noindent\textit{This is Paper 1 of The Windstorm Series (Papers 1--9) on universal constraints in serial information processing.}
 
 \vspace{1em}
-\noindent\textcopyright~2026 Grant Lavell Whitmer III. This work is licensed under a \href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution 4.0 International License} (CC BY 4.0).
+\noindent\textcopyright~2026 Grant Whitmer. This work is licensed under a \href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution 4.0 International License} (CC BY 4.0).
 
 \end{document}
