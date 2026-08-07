@@ -15,7 +15,6 @@ Grant Lavell Whitmer III · Windstorm Labs, The Windstorm Institute · Fort Ann,
 ## Read the Paper
 
 - **[paper.pdf](paper.pdf)** — full academic paper
-- **[article.html](article.html)** — accessible web version
 - **[Zenodo record](https://doi.org/10.5281/zenodo.19274047)** — archived with DOI
 - **[Website article](https://windstorminstitute.org/articles/fons-constraint.html)** — long-form companion
 
