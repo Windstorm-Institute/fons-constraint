@@ -169,7 +169,7 @@ The Unit Constraint (N ~ 2^6) is established as a theorem for nucleotide-based e
 
 The negative result on AI tokenizers is reported honestly: the prediction as stated was wrong. However, the unexpected convergence at approximately 4-5 effective bits per processing event across three substrates (molecular, cognitive, computational) warrants further investigation and may represent a deeper, genuinely substrate-independent constraint. If confirmed, this would imply that the bottleneck in serial information processing lies not in the encoding vocabulary but in the receiver's capacity to discriminate and process symbols under noise — a receiver-limited rather than sender-limited regime.
 
-This throughput convergence is examined formally in the companion papers of this series: the rate-distortion floor is derived in [2], the cross-substrate basin is characterized in [7], the thermodynamic basis is established in [8], and the cost structure distinguishing biological from artificial systems is analyzed in the fifth paper of the series (DOI: 10.5281/zenodo.19433048).
+This throughput convergence is examined formally in the companion papers of this series: the rate-distortion floor is derived in [2], the cross-substrate basin is characterized in [7], the thermodynamic basis is established in [8], and the cost structure distinguishing biological from artificial systems is analyzed in the fifth paper of the series (DOI: 10.5281/zenodo.19432785).
 
 ### 4.4 Limitations
 
@@ -212,7 +212,7 @@ The author declares no competing financial or personal interests that could infl
 
 [1] Freeland, S.J.; Hurst, L.D. "The genetic code is one in a million," Journal of Molecular Evolution, vol. 47, no. 3, pp. 238-248, 1998. DOI: 10.1007/PL00006384
 
-[2] Whitmer III, G.L. "The Receiver-Limited Floor: Rate-Distortion Bounds on Serial Decoding Throughput," Zenodo, 2026. DOI: 10.5281/zenodo.19322973
+[2] Whitmer III, G.L. "The Receiver-Limited Floor: Rate-Distortion Bounds on Serial Decoding Throughput," Zenodo, 2026. DOI: 10.5281/zenodo.19322972
 
 [3] Eigen, M. "Selforganization of matter and the evolution of biological macromolecules," Die Naturwissenschaften, vol. 58, no. 10, pp. 465-523, 1971. DOI: 10.1007/BF00623322
 
@@ -222,9 +222,9 @@ The author declares no competing financial or personal interests that could infl
 
 [6] Miller, G.A. "The magical number seven, plus or minus two: Some limits on our capacity for processing information," Psychological Review, vol. 63, no. 2, pp. 81-97, 1956. DOI: 10.1037/h0043158
 
-[7] Whitmer III, G.L. "The Throughput Basin: Cross-Substrate Convergence and Decomposition of Serial Decoding Throughput," Zenodo, 2026. DOI: 10.5281/zenodo.19323194
+[7] Whitmer III, G.L. "The Throughput Basin: Cross-Substrate Convergence and Decomposition of Serial Decoding Throughput," Zenodo, 2026. DOI: 10.5281/zenodo.19323193
 
-[8] Whitmer III, G.L. "The Serial Decoding Basin: Five Experiments on Convergence, Thermodynamic Anchoring, and Receiver-Limited Geometry," Zenodo, 2026. DOI: 10.5281/zenodo.19323423
+[8] Whitmer III, G.L. "The Serial Decoding Basin: Five Experiments on Convergence, Thermodynamic Anchoring, and Receiver-Limited Geometry," Zenodo, 2026. DOI: 10.5281/zenodo.19323422
 
 [9] Shannon, C.E. "A Mathematical Theory of Communication," Bell System Technical Journal, vol. 27, no. 3, pp. 379-423, 1948. DOI: 10.1002/j.1538-7305.1948.tb01338.x
 
@@ -252,4 +252,4 @@ The complete implementation, including all analysis code and raw results in JSON
 
 ---
 
-*This paper is Paper 1 of The Windstorm Series. The series continues with Paper 2: The Receiver-Limited Floor [2], Paper 3: The Throughput Basin [7], Paper 4: The Serial Decoding Basin [8], Paper 5: The Dissipative Decoder (DOI: 10.5281/zenodo.19433048), Paper 6: The Inherited Constraint (DOI: 10.5281/zenodo.19432911), and Paper 7: The Throughput Basin Origin (DOI: 10.5281/zenodo.19498582).*
+*This paper is Paper 1 of The Windstorm Series. The series continues with Paper 2: The Receiver-Limited Floor [2], Paper 3: The Throughput Basin [7], Paper 4: The Serial Decoding Basin [8], Paper 5: The Dissipative Decoder (DOI: 10.5281/zenodo.19432785), Paper 6: The Inherited Constraint (DOI: 10.5281/zenodo.19432910), and Paper 7: The Throughput Basin Origin (DOI: 10.5281/zenodo.19498582).*

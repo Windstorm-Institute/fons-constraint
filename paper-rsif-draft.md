@@ -144,7 +144,7 @@ This work did not require ethical approval.
 
 ## Data Accessibility
 
-All experimental code, data, and analysis scripts are publicly available at https://github.com/Windstorm-Labs/fons-constraint (DOI: 10.5281/zenodo.19274048).
+All experimental code, data, and analysis scripts are publicly available at https://github.com/Windstorm-Labs/fons-constraint (DOI: 10.5281/zenodo.19274047).
 
 ## Declaration of AI Use
 
@@ -184,15 +184,15 @@ Mathematical derivations, tokenizer experiment, and initial manuscript drafting 
 
 [8] Cowan N. The magical number 4 in short-term memory. Behav Brain Sci. 2001;24:87-114. DOI: 10.1017/S0140525X01003922
 
-[9] Whitmer GL III. The Receiver-Limited Floor. Zenodo. 2026. DOI: 10.5281/zenodo.19322973
+[9] Whitmer GL III. The Receiver-Limited Floor. Zenodo. 2026. DOI: 10.5281/zenodo.19322972
 
-[10] Whitmer GL III. The Throughput Basin. Zenodo. 2026. DOI: 10.5281/zenodo.19323194
+[10] Whitmer GL III. The Throughput Basin. Zenodo. 2026. DOI: 10.5281/zenodo.19323193
 
-[11] Whitmer GL III. The Serial Decoding Basin. Zenodo. 2026. DOI: 10.5281/zenodo.19323423
+[11] Whitmer GL III. The Serial Decoding Basin. Zenodo. 2026. DOI: 10.5281/zenodo.19323422
 
-[12] Whitmer GL III. The Dissipative Decoder. Zenodo. 2026. DOI: 10.5281/zenodo.19433048
+[12] Whitmer GL III. The Dissipative Decoder. Zenodo. 2026. DOI: 10.5281/zenodo.19432785
 
-[13] Whitmer GL III. The Inherited Constraint. Zenodo. 2026. DOI: 10.5281/zenodo.19432911
+[13] Whitmer GL III. The Inherited Constraint. Zenodo. 2026. DOI: 10.5281/zenodo.19432910
 
 [14] Landauer R. Irreversibility and heat generation in the computing process. IBM J Res Dev. 1961;5:183-191. DOI: 10.1147/rd.53.0183
 

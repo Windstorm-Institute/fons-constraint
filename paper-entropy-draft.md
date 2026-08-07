@@ -170,15 +170,15 @@ The genetic code's 64 codons represent the information-theoretic optimum for a f
 
 [8] Cowan, N. The magical number 4 in short-term memory. *Behav. Brain Sci.* **2001**, *24*, 87-114. DOI: 10.1017/S0140525X01003922
 
-[9] Whitmer III, G.L. The Receiver-Limited Floor. *Zenodo* **2026**. DOI: 10.5281/zenodo.19322973
+[9] Whitmer III, G.L. The Receiver-Limited Floor. *Zenodo* **2026**. DOI: 10.5281/zenodo.19322972
 
-[10] Whitmer III, G.L. The Throughput Basin. *Zenodo* **2026**. DOI: 10.5281/zenodo.19323194
+[10] Whitmer III, G.L. The Throughput Basin. *Zenodo* **2026**. DOI: 10.5281/zenodo.19323193
 
-[11] Whitmer III, G.L. The Serial Decoding Basin. *Zenodo* **2026**. DOI: 10.5281/zenodo.19323423
+[11] Whitmer III, G.L. The Serial Decoding Basin. *Zenodo* **2026**. DOI: 10.5281/zenodo.19323422
 
-[12] Whitmer III, G.L. The Dissipative Decoder. *Zenodo* **2026**. DOI: 10.5281/zenodo.19433048
+[12] Whitmer III, G.L. The Dissipative Decoder. *Zenodo* **2026**. DOI: 10.5281/zenodo.19432785
 
-[13] Whitmer III, G.L. The Inherited Constraint. *Zenodo* **2026**. DOI: 10.5281/zenodo.19432911
+[13] Whitmer III, G.L. The Inherited Constraint. *Zenodo* **2026**. DOI: 10.5281/zenodo.19432910
 
 [14] Landauer, R. Irreversibility and heat generation in the computing process. *IBM J. Res. Dev.* **1961**, *5*, 183-191. DOI: 10.1147/rd.53.0183
 
@@ -186,4 +186,4 @@ The genetic code's 64 codons represent the information-theoretic optimum for a f
 
 ---
 
-*This paper is Paper 1 of The Windstorm Series (Papers 1-7) on universal constraints in serial information processing.*
+*This paper is Paper 1 of The Windstorm Series (Papers 1-9) on universal constraints in serial information processing.*
